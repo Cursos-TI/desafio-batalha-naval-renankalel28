@@ -1,6 +1,9 @@
-#include <stdio.h>  // Biblioteca padrão para entrada e saída
-#define COLUNA 10 // Número de colunas do tabuleiro
-#define LINHA 10 // Número de linhas do tabuleiro
+#include <stdio.h>  
+
+#define COLUNA 10
+// Número de colunas do tabuleiro
+#define LINHA 10
+// Número de linhas do tabuleiro
 
 int main() {
     // Vetor que representa os nomes das colunas do tabuleiro (A até J)
@@ -35,6 +38,63 @@ int main() {
     tabuleiro[7][7] = 3;
     tabuleiro[8][8] = 3;
     tabuleiro[9][9] = 3;
+
+    // Definindo o centro da cruz
+    int linhaCentro = 1;
+    int colunaCentro = 5;
+
+    // Cruz ocupa 3 linhas (1 acima + centro + 1 abaixo)
+    for (int i = linhaCentro - 1; i <= linhaCentro + 1; i++) {
+        if (i >= 0 && i < LINHA) { // garante que não sai da matriz
+            tabuleiro[i][colunaCentro] = 5;
+        }
+    }
+
+    // Cruz ocupa 5 colunas (2 à esquerda + centro + 2 à direita)
+    for (int j = colunaCentro - 2; j <= colunaCentro + 2; j++) {
+        if (j >= 0 && j < COLUNA) {
+            tabuleiro[linhaCentro][j] = 5;
+        }
+    }
+//definindo o centro do triangulo
+    int linhaCentro2 = 8;
+    int colunaCentro2 = 2;   
+    // parte superior do triangulo
+    for (int i = linhaCentro2 - 1; i <= linhaCentro2 + 1; i++) {
+        if (i >= 0 && i < LINHA) { // garante que não sai da matriz
+            tabuleiro[i][colunaCentro2] = 5;
+        }
+    }
+    // parte inferior do triangulo
+    for (int j = colunaCentro2 - 1; j <= colunaCentro2 + 1; j++) {
+        if (j >= 0 && j < COLUNA) {
+            tabuleiro[linhaCentro2][j] = 5;
+        }
+    }
+    // base do triangulo
+for (int j = colunaCentro2 - 2; j <= colunaCentro2 + 2; j++) {
+    if (j >= 0 && j < COLUNA && linhaCentro2 + 1 < LINHA) {
+        tabuleiro[linhaCentro2 + 1][j] = 5;
+    }
+}
+
+//definindo o centro do octaedro
+    int linhaCentro3 = 4;
+    int colunaCentro3 = 1;
+
+       // octaedro ocupa 3 linhas (1 acima + centro + 1 abaixo)
+    for (int i = linhaCentro3 - 1; i <= linhaCentro3 + 1; i++) {
+        if (i >= 0 && i < LINHA) { // garante que não sai da matriz
+            tabuleiro[i][colunaCentro3] = 5;
+        }
+    }
+
+    // octaedro ocupa 3 colunas (1 à esquerda + centro + 1 à direita)
+    for (int j = colunaCentro3 - 1; j <= colunaCentro3 + 1; j++) {
+        if (j >= 0 && j < COLUNA) {
+            tabuleiro[linhaCentro3][j] = 5;
+        }
+    }
 
     // Título do tabuleiro
     printf("Tabuleiro de Batalha Naval:\n\n");
